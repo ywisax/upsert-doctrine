@@ -19,10 +19,11 @@ class UpsertQueryBuilder
 
     public function __construct(
         private EntityManagerInterface $entityManager,
+        ProviderManager $providerManager = null,
     )
     {
         $this->connection = $entityManager->getConnection();
-        $this->providerManager = new ProviderManager($entityManager);
+        $this->providerManager = $providerManager ?: new ProviderManager($entityManager);
     }
 
     /**
